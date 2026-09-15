@@ -3,6 +3,8 @@
 import { useRouter } from "next/navigation";
 import { Grid2X2, Check } from "lucide-react";
 import { GitHub } from "@/components/GitHubIcon";
+import { signInWithGitHub } from "@/lib/api/auth";
+import { installGitHubApp } from "@/lib/api/github-app";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -17,14 +19,6 @@ import { Separator } from "@/components/ui/separator";
 
 export default function LoginPage() {
   const router = useRouter();
-
-  const signInWithGitHub = () => {
-    window.location.href = "/api/auth/github";
-  };
-
-  const installGitHubApp = () => {
-    window.location.href = "/api/github/app/install";
-  };
 
   return (
     <main className="min-h-screen bg-background">
@@ -55,7 +49,6 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Progress */}
         <div className="mb-8 flex items-center">
           <div className="flex items-center gap-2">
             <div className="flex size-7 items-center justify-center rounded-full bg-primary text-primary-foreground">
@@ -77,7 +70,6 @@ export default function LoginPage() {
         </div>
 
         <div className="space-y-4">
-          {/* Step 1 */}
           <Card>
             <CardHeader>
               <div className="flex items-start gap-4">
@@ -110,7 +102,6 @@ export default function LoginPage() {
             </CardContent>
           </Card>
 
-          {/* Step 2 */}
           <Card className="bg-muted/40">
             <CardHeader>
               <div className="flex items-start gap-4">
@@ -149,7 +140,6 @@ export default function LoginPage() {
           </Card>
         </div>
 
-        {/* Why two steps */}
         <Card className="mt-6 bg-muted/40">
           <CardHeader className="pb-3">
             <CardTitle className="text-xs font-mono uppercase tracking-widest text-muted-foreground">
