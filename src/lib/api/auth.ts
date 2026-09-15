@@ -1,4 +1,4 @@
-import { apiFetch } from "./client";
+import { ApiError, apiFetch } from "./client";
 
 export interface CurrentUser {
   id: string;
@@ -13,7 +13,7 @@ export async function getCurrentUser(): Promise<CurrentUser | null> {
   try {
     return await apiFetch<CurrentUser>("/api/auth/me");
   } catch (error) {
-    if (error instanceof Error && "status" in error && error.status === 401) {
+    if (error instanceof ApiError && error.status === 401) {
       return null;
     }
 
