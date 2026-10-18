@@ -7,9 +7,10 @@ const DEMO_USER = {
   onboarding_completed: true,
 };
 
-export function startDemoSession(): void {
+export function startDemoSession(message = "Demo sign-in successful."): void {
   if (typeof window === "undefined") return;
   window.localStorage.setItem("repopass-demo-user", JSON.stringify(DEMO_USER));
+  window.sessionStorage.setItem("repopass-demo-success", message);
 }
 
 export function endDemoSession(): void {
