@@ -3,8 +3,7 @@
 import { useRouter } from "next/navigation";
 import { Grid2X2, Check } from "lucide-react";
 import { GitHub } from "@/components/GitHubIcon";
-import { signInWithGitHub } from "@/lib/api/auth";
-import { installGitHubApp } from "@/lib/api/github-app";
+import { startDemoSession } from "@/lib/demo-session";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -19,6 +18,16 @@ import { Separator } from "@/components/ui/separator";
 
 export default function LoginPage() {
   const router = useRouter();
+
+  function handleDemoSignIn() {
+    startDemoSession("GitHub sign-in simulated successfully.");
+    router.push("/dashboard/");
+  }
+
+  function handleDemoInstall() {
+    startDemoSession("GitHub App installation simulated successfully.");
+    router.push("/dashboard/");
+  }
 
   return (
     <main className="min-h-screen bg-background">
@@ -95,7 +104,7 @@ export default function LoginPage() {
             </CardHeader>
 
             <CardContent>
-              <Button onClick={signInWithGitHub} className="w-full sm:w-auto">
+              <Button onClick={handleDemoSignIn} className="w-full sm:w-auto">
                 <GitHub />
                 Continue with GitHub
               </Button>
@@ -130,7 +139,7 @@ export default function LoginPage() {
             <CardContent>
               <Button
                 variant="outline"
-                onClick={installGitHubApp}
+                onClick={handleDemoInstall}
                 className="w-full sm:w-auto"
               >
                 <Grid2X2 />
